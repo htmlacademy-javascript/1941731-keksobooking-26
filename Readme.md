@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Ярослав Гурин](https://up.htmlacademy.ru/javascript/26/user/1941731).
-* Наставник: `Неизвестно`.
+- Студент: [Ярослав Гурин](https://up.htmlacademy.ru/javascript/26/user/1941731).
+- Наставник: [Артём Рудов](https://htmlacademy.ru/profile/id345377).
 
 ---
 
