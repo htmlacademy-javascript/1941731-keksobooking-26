@@ -1,5 +1,4 @@
 const getRandomPositiveInteger = (min, max) => {
-
   if (min > max) {
     const temporary = min;
     min = max;
@@ -11,14 +10,14 @@ const getRandomPositiveInteger = (min, max) => {
 };
 
 const getRandomPositiveIntegerWithDecimalPlaces = (min, max, decimalPlaces) => {
-
   if (min > max) {
     const temporary = min;
     min = max;
     max = temporary;
   }
 
-  const precision = Math.pow(10, decimalPlaces);
+  const BASE = 10;
+  const precision = Math.pow(BASE, decimalPlaces);
   const result =
     Math.floor((Math.random() * (max - min) + min) * precision) / precision;
 
@@ -50,14 +49,14 @@ const getImageId = () => {
   const imageId = getRandomPositiveInteger(0, unusedId.length - 1);
   const index = unusedId.indexOf(unusedId[imageId]);
   let imageLink = '';
-
-  if (unusedId[imageId] < 10) {
+  const largestSingleNumber = 9;
+  if (unusedId[imageId] <= largestSingleNumber) {
     imageLink =`0${unusedId[imageId]}`;
   } else {
     imageLink = `${unusedId[imageId]}`;
   }
 
-  if(index >= 0) {
+  if (index >= 0) {
     unusedId.splice(index,1);
   }
 

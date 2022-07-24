@@ -26,26 +26,39 @@ const FEATURES = [
   'conditioner',
 ];
 
+const MINIMUM_INTEGER = 1;
 
-const similarAdList =[];
+const MAXIMUM_INTEGER = 999999;
 
-const getSimilarAdList =(listLength)=>{
-  for (let i = 0; i<listLength; i++){
+const MINIMUM_LAT = 35.65;
+
+const MAXIMUM_LAT = 35.7;
+
+const MINIMUM_LNG = 139.7;
+
+const MAXIMUM_LNG = 139.8;
+
+const DECIMAL_POINT_PRECISION = 5;
+
+const getSimilarAds = (listLength) => {
+  const similarAdList = [];
+
+  for (let i = 0; i < listLength; i++) {
     const author = {
       avatar: `img/avatars/user${getImageId()}.png`,
     };
     const location = {
-      lat: getRandomPositiveIntegerWithDecimalPlaces(35.65, 35.7, 5),
-      lng: getRandomPositiveIntegerWithDecimalPlaces(139.7, 139.8, 5),
+      lat: getRandomPositiveIntegerWithDecimalPlaces(MINIMUM_LAT, MAXIMUM_LAT, DECIMAL_POINT_PRECISION),
+      lng: getRandomPositiveIntegerWithDecimalPlaces(MINIMUM_LNG, MAXIMUM_LNG, DECIMAL_POINT_PRECISION),
     };
 
-    const OFFER = {
+    const offer = {
       title: 'Заголовок предложения',
       address: `${location.lat}, ${location.lng}`,
-      price: getRandomPositiveInteger(0, 999999),
+      price: getRandomPositiveInteger(MINIMUM_INTEGER, MAXIMUM_INTEGER),
       type: getRandomArrayElement(TYPES),
-      rooms: getRandomPositiveInteger(1, 100),
-      guests: getRandomPositiveInteger(1, 100),
+      rooms: getRandomPositiveInteger(MINIMUM_INTEGER, MAXIMUM_INTEGER),
+      guests: getRandomPositiveInteger(MINIMUM_INTEGER, MAXIMUM_INTEGER),
       checkin: getRandomArrayElement(CHECKINS),
       checkout: getRandomArrayElement(CHECKOUTS),
       features: getArrayWithNoRepeat(FEATURES),
@@ -55,13 +68,14 @@ const getSimilarAdList =(listLength)=>{
 
     const similarAd = {
       author: author,
-      offer: OFFER,
+      offer: offer,
       location: location,
     };
 
     similarAdList.push(similarAd);
   }
+
   return similarAdList;
 };
 
-export{getSimilarAdList};
+export {getSimilarAds};

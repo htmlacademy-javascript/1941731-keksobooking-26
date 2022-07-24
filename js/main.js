@@ -1,3 +1,5 @@
-import {getSimilarAdList} from './data.js';
+import {getSimilarAds} from './data.js';
 
-getSimilarAdList(10);
+const SIMILAR_ADS_LENGTH = 10;
+getSimilarAds(SIMILAR_ADS_LENGTH);
+
