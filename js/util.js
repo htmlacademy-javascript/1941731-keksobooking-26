@@ -63,6 +63,7 @@ const getImageId = () => {
   return imageLink;
 };
 
+
 export {
   getRandomPositiveInteger,
   getRandomPositiveIntegerWithDecimalPlaces,
