@@ -44,19 +44,11 @@ similarAdList.forEach((ad) => {
   setTextContent(adElement.querySelector('.popup__text--time'), ad.offer.checkin ? `Заезд после ${ad.offer.checkin}, выезд до ${ad.offer.checkout}` : undefined);
   setTextContent(adElement.querySelector('.popup__features'), ad.offer.features);
   setTextContent(adElement.querySelector('.popup__description'), ad.offer.description);
-  if(ad.offer.photos.length === 1){
+  adElement.querySelector('.popup__photo').remove();
 
-    adElement.querySelector('.popup__photo').src = ad.offer.photos;
-  }
+  if(!(ad.offer.photos.length ===0)){
 
-  else if(ad.offer.photos.length ===0){
-    adElement.querySelector('.popup__photo').classList.add('visually-hidden');
-  }
-
-  else {
-
-    adElement.querySelector('.popup__photo').src = ad.offer.photos[0];
-    for (let i = 1; i<ad.offer.photos.length; i++){
+    for (let i = 0; i< ad.offer.photos.length; i++){
 
       const photo = document.createElement('img');
       photo.src = ad.offer.photos[i];
