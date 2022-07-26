@@ -40,10 +40,11 @@ const MAXIMUM_LNG = 139.8;
 
 const DECIMAL_POINT_PRECISION = 5;
 
-const getSimilarAds = (listLength) => {
+const getSimilarAds = () => {
   const similarAdList = [];
+  const LIST_LENGTH = 10;
 
-  for (let i = 0; i < listLength; i++) {
+  for (let i = 0; i < LIST_LENGTH; i++) {
     const author = {
       avatar: `img/avatars/user${getImageId()}.png`,
     };
@@ -78,4 +79,4 @@ const getSimilarAds = (listLength) => {
   return similarAdList;
 };
 
-export {getSimilarAds};
+export {getSimilarAds, TYPES};
