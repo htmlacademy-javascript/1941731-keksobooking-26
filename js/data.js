@@ -86,5 +86,5 @@ const getSimilarAds = () => {
   return similarAdList;
 };
 
-export {getSimilarAds, TYPES, ROOMS_OPTION};
+export {getSimilarAds, TYPES, ROOMS_OPTION, DECIMAL_POINT_PRECISION};
 
