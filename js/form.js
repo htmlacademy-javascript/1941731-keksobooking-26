@@ -37,10 +37,9 @@ const activateForm = () => {
   }
 };
 
-deactivateForm();
-activateForm();
-
 
 export {
   activateForm,
-  deactivateForm};
+  deactivateForm,
+  adForm
+};

@@ -40,6 +40,13 @@ const MAXIMUM_LNG = 139.8;
 
 const DECIMAL_POINT_PRECISION = 5;
 
+const ROOMS_OPTION = {
+  '1': ['1'],
+  '2': ['1', '2'],
+  '3': ['1', '2', '3'],
+  '100': ['0']
+};
+
 const getSimilarAds = () => {
   const similarAdList = [];
   const LIST_LENGTH = 10;
@@ -79,4 +86,5 @@ const getSimilarAds = () => {
   return similarAdList;
 };
 
-export {getSimilarAds, TYPES};
+export {getSimilarAds, TYPES, ROOMS_OPTION};
+
