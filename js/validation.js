@@ -13,9 +13,6 @@ const MIN_TITLE_LENGTH = 30;
 
 const MAX_TITLE_LENGTH = 100;
 
-const NUMBER_SYSTEM = 10;
-
-
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__element--invalid',
