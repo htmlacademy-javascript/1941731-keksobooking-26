@@ -88,3 +88,4 @@ const renderAd = (ad) =>{
 };
 
 renderAd(similarAdList[0]);
+
