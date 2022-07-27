@@ -1,6 +1,6 @@
 import {
   activateForm,
-  deactivateForm} from './form.js';
+} from './form.js';
 
 import {
   similarAdList,
