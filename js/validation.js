@@ -17,12 +17,12 @@ const NUMBER_SYSTEM = 10;
 
 
 const pristine = new Pristine(adForm, {
-  classTo: 'ad-form__element', // Элемент, на который будут добавляться классы
-  errorClass: 'ad-form__element--invalid', // Класс, обозначающий невалидное поле
-  successClass: 'ad-form__element--valid', // Класс, обозначающий валидное поле
-  errorTextParent: 'ad-form__element', // Элемент, куда будет выводиться текст с ошибкой
-  errorTextTag: 'span', // Тег, который будет обрамлять текст ошибки
-  errorTextClass: 'ad-form__error' // Класс для элемента с текстом ошибки
+  classTo: 'ad-form__element',
+  errorClass: 'ad-form__element--invalid',
+  successClass: 'ad-form__element--valid',
+  errorTextParent: 'ad-form__element',
+  errorTextTag: 'span',
+  errorTextClass: 'ad-form__error'
 });
 
 function validateAdTitle (value) {
