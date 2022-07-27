@@ -2,8 +2,6 @@ import {getSimilarAds} from './data.js';
 
 const similarAdList = getSimilarAds();
 
-const mapCanvas = document.querySelector('#map-canvas');
-
 const similarAdTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 const typeContainer = document.querySelector('#type');
@@ -84,7 +82,10 @@ const renderAd = (ad) =>{
   setPhotos(adElement.querySelector('.popup__photos'), ad.offer.photos);
   setSrcContent(adElement.querySelector('.popup__avatar'), ad.author.avatar);
 
-  mapCanvas.appendChild(adElement);
+  return adElement;
+  // mapCanvas.appendChild(adElement);
 };
 
-renderAd(similarAdList[0]);
+export {
+  renderAd,
+  similarAdList};
