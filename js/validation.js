@@ -13,9 +13,6 @@ const MIN_TITLE_LENGTH = 30;
 
 const MAX_TITLE_LENGTH = 100;
 
-const NUMBER_SYSTEM = 10;
-
-
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
   errorClass: 'ad-form__element--invalid',
@@ -35,20 +32,21 @@ const priceField = adForm.querySelector('#price');
 
 const type = adForm.querySelector('[name="type"]');
 
-const selectedType = type.querySelector(`option[value=${type.value}]`);
+let currentSelect = type.value;
 
-function validatePrice (value){
-  return value.length && parseInt(value, NUMBER_SYSTEM) >= MIN_PRICE[selectedType.value];
+
+function validatePrice (){
+  return priceField.value >= MIN_PRICE[currentSelect];
 }
 
 function getPriceErrorMessage(){
-  return `Не меньше ${MIN_PRICE[selectedType.value]} рублей`;
+  return `Не меньше ${MIN_PRICE[currentSelect]} рублей`;
 }
 pristine.addValidator(priceField, validatePrice, getPriceErrorMessage);
 
 type.addEventListener('change', (event) => {
 
-  const currentSelect = event.target.value;
+  currentSelect = event.target.value;
   priceField.placeholder = MIN_PRICE[currentSelect];
 
 });
@@ -85,3 +83,5 @@ adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
 });
+
+export {priceField};
