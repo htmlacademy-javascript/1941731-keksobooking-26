@@ -9,6 +9,13 @@ const MIN_PRICE = {
   'palace' : 10000
 };
 
+const MIN_TITLE_LENGTH = 30;
+
+const MAX_TITLE_LENGTH = 100;
+
+const NUMBER_SYSTEM = 10;
+
+
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element', // Элемент, на который будут добавляться классы
   errorClass: 'ad-form__element--invalid', // Класс, обозначающий невалидное поле
@@ -19,7 +26,7 @@ const pristine = new Pristine(adForm, {
 });
 
 function validateAdTitle (value) {
-  return (value.length >= 30 && value.length <= 100);
+  return (value.length >= MIN_TITLE_LENGTH && value.length <= MAX_TITLE_LENGTH);
 }
 
 pristine.addValidator(adForm.querySelector('#title'), validateAdTitle, 'От 30 до 100 символов');
@@ -31,7 +38,7 @@ const type = adForm.querySelector('[name="type"]');
 const selectedType = type.querySelector(`option[value=${type.value}]`);
 
 function validatePrice (value){
-  return value.length && parseInt(value, 10) >= MIN_PRICE[selectedType.value];
+  return value.length && parseInt(value, NUMBER_SYSTEM) >= MIN_PRICE[selectedType.value];
 }
 
 function getPriceErrorMessage(){
@@ -56,6 +63,23 @@ function validateRooms() {
 
 pristine.addValidator(rooms, validateRooms, 'Количество комнат и гостей несопоставимы');
 pristine.addValidator(guests, validateRooms, 'Количество комнат и гостей несопоставимы');
+
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+
+timeIn.addEventListener('change', (event) => {
+
+  const currentTimeIn = event.target.value;
+  timeOut.value = currentTimeIn;
+
+});
+timeOut.addEventListener('change', (event) => {
+
+  const currenttimeOut = event.target.value;
+  timeIn.value = currenttimeOut;
+
+});
+
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
