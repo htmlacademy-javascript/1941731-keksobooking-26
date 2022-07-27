@@ -1,15 +1,22 @@
 import {
   activateForm,
   deactivateForm} from './form.js';
+
 import {
   similarAdList,
   renderAd
 } from './popup.js';
+import {
+  DECIMAL_POINT_PRECISION
+} from './data.js';
+
 
 const STARTING_LAT = 35.67110;
 const STARTING_LNG = 139.76120;
 const INCREASE_MULTIPLIER = 10;
 const ICON_SIZE = 52;
+const SIMILAR_AD_ICON_SIZE = 40;
+
 
 const addressField = document.querySelector('#address');
 
@@ -18,7 +25,6 @@ const map = L.map('map-canvas')
   .on('load', () => {
     activateForm();
     addressField.value = `${STARTING_LAT}, ${STARTING_LNG}`;
-    console.log('Карта инициализирована');
   })
   .setView({
     lat: STARTING_LAT,
@@ -55,8 +61,8 @@ mainPinMarker.addTo(map);
 mainPinMarker.on('moveend', (evt) => {
   const newAddress = evt.target.getLatLng();
   const newCoordinates = {
-    lat: newAddress.lat.toFixed(5),
-    lng: newAddress.lng.toFixed(5),
+    lat: newAddress.lat.toFixed(DECIMAL_POINT_PRECISION),
+    lng: newAddress.lng.toFixed(DECIMAL_POINT_PRECISION),
   };
 
   addressField.value = `${newCoordinates.lat}, ${newCoordinates.lng}`;
@@ -64,8 +70,8 @@ mainPinMarker.on('moveend', (evt) => {
 
 const icon = L.icon({
   iconUrl: './img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconSize: [SIMILAR_AD_ICON_SIZE, SIMILAR_AD_ICON_SIZE],
+  iconAnchor: [SIMILAR_AD_ICON_SIZE/2, SIMILAR_AD_ICON_SIZE],
 });
 
 similarAdList.forEach((element) => {
