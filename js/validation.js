@@ -1,5 +1,15 @@
-import { adForm } from './form.js';
 import { ROOMS_OPTION } from './data.js';
+
+const adForm = document.querySelector('.ad-form');
+
+const pristine = new Pristine(adForm, {
+  classTo: 'ad-form__element',
+  errorClass: 'ad-form__element--invalid',
+  successClass: 'ad-form__element--valid',
+  errorTextParent: 'ad-form__element',
+  errorTextTag: 'span',
+  errorTextClass: 'ad-form__error'
+});
 
 const MIN_PRICE = {
   'bungalow' : 0,
@@ -12,15 +22,6 @@ const MIN_PRICE = {
 const MIN_TITLE_LENGTH = 30;
 
 const MAX_TITLE_LENGTH = 100;
-
-const pristine = new Pristine(adForm, {
-  classTo: 'ad-form__element',
-  errorClass: 'ad-form__element--invalid',
-  successClass: 'ad-form__element--valid',
-  errorTextParent: 'ad-form__element',
-  errorTextTag: 'span',
-  errorTextClass: 'ad-form__error'
-});
 
 function validateAdTitle (value) {
   return (value.length >= MIN_TITLE_LENGTH && value.length <= MAX_TITLE_LENGTH);
@@ -79,9 +80,21 @@ timeOut.addEventListener('change', (event) => {
 });
 
 
-adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+// adForm.addEventListener('submit', (evt) => {
+//   evt.preventDefault();
 
-export {priceField};
+//   const isValid = pristine.validate();
+//   if (isValid) {
+//     const formData = new FormData(evt.target);
+
+//     fetch(
+//       'https://26.javascript.pages.academy/keksobooking',
+//       {
+//         method: 'POST',
+//         body: formData,
+//       },
+//     );
+//   }
+// });
+
+export{pristine};
