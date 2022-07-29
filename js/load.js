@@ -3,9 +3,6 @@ const getData = (onSuccess) =>{
     .then((response) => response.json())
     .then((similarAdList) => {
       onSuccess(similarAdList);
-    })
-    .catch((err) => {
-      console.log(err);
     });
 };
 
