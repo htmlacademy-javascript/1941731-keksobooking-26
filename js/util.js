@@ -1,3 +1,7 @@
+// const ALERT_SHOW_TIME = 5000;
+
+const BASE = 10;
+
 const getRandomPositiveInteger = (min, max) => {
   if (min > max) {
     const temporary = min;
@@ -16,7 +20,6 @@ const getRandomPositiveIntegerWithDecimalPlaces = (min, max, decimalPlaces) => {
     max = temporary;
   }
 
-  const BASE = 10;
   const precision = Math.pow(BASE, decimalPlaces);
   const result =
     Math.floor((Math.random() * (max - min) + min) * precision) / precision;
@@ -64,9 +67,63 @@ const getImageId = () => {
 };
 
 
+const showAlert = () => {
+  const errorTemplate = document.querySelector('#error').content.querySelector('.error');
+  const alertContainer = errorTemplate.cloneNode(true);
+  alertContainer.style.zIndex = '1000';
+  alertContainer.style.width = '100%';
+  alertContainer.style.height = '100%';
+  alertContainer.style.position = 'fixed';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.padding = '300px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+
+  document.body.append(alertContainer);
+
+  document.addEventListener('click', closeAlert);
+  document.addEventListener('keydown', closeAlert);
+};
+
+function closeAlert(){
+  document.querySelector('.error').remove();
+  document.removeEventListener('click', closeSuccess);
+  document.removeEventListener('keydown', closeSuccess);
+}
+
+const showSucces = () => {
+  const successTemplate = document.querySelector('#success').content.querySelector('.success');
+  const successContainer = successTemplate.cloneNode(true);
+  successContainer.style.zIndex = '1000';
+  successContainer.style.width = '100%';
+  successContainer.style.height = '100%';
+  successContainer.style.position = 'fixed';
+  successContainer.style.left = '0';
+  successContainer.style.top = '0';
+  successContainer.style.padding = '300px';
+  successContainer.style.fontSize = '30px';
+  successContainer.style.textAlign = 'center';
+  successContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+
+  document.body.append(successContainer);
+
+  document.addEventListener('click', closeSuccess);
+  document.addEventListener('keydown', closeSuccess);
+
+};
+
+function closeSuccess(){
+  document.querySelector('.success').remove();
+  document.removeEventListener('click', closeSuccess);
+  document.removeEventListener('keydown', closeSuccess);
+}
 export {
   getRandomPositiveInteger,
   getRandomPositiveIntegerWithDecimalPlaces,
   getRandomArrayElement,
   getArrayWithNoRepeat,
-  getImageId};
+  getImageId,
+  showAlert,
+  showSucces};

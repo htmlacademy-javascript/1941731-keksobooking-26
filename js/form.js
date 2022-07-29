@@ -1,4 +1,10 @@
+import{pristine} from './validation.js';
+import{sendData} from './load.js';
+import{showAlert, showSucces} from './util.js';
+
 const adForm = document.querySelector('.ad-form');
+
+const submitButton = document.querySelector('.ad-form__submit');
 
 const formSlider = document.querySelector('.ad-form__slider');
 
@@ -37,9 +43,42 @@ const activateForm = () => {
   }
 };
 
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикую...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
+
+const setUserFormSubmit = () => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          showSucces();
+          document.querySelector('.success').classList.remove('hidden');
+          unblockSubmitButton();
+        },
+        () => {
+          showAlert();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
+    }
+    evt.target.reset();
+  });
+};
 
 export {
   activateForm,
   deactivateForm,
+  setUserFormSubmit,
   adForm
 };

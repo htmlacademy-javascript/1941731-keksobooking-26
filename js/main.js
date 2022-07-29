@@ -1,6 +1,8 @@
-import {
-  activateForm,
-  deactivateForm} from './form.js';
+import {getData} from './load.js';
 
-deactivateForm();
-activateForm();
+import {setUserFormSubmit} from './form.js';
+
+import{renderSimilarList} from './map.js';
+
+getData(renderSimilarList);
+setUserFormSubmit();

@@ -1,6 +1,3 @@
-import {getSimilarAds} from './data.js';
-
-const similarAdList = getSimilarAds();
 
 const similarAdTemplate = document.querySelector('#card').content.querySelector('.popup');
 
@@ -19,7 +16,7 @@ const getOfferType = (offerType) => {
 };
 
 const setTextContent = (node, objectValue) => {
-  if(objectValue === undefined){
+  if(!objectValue){
 
     node.classList.add('visually-hidden');
   } else {
@@ -29,7 +26,7 @@ const setTextContent = (node, objectValue) => {
 };
 
 const setSrcContent = (node, objectValue) => {
-  if(objectValue === undefined){
+  if(!objectValue){
 
     node.classList.add('visually-hidden');
   } else {
@@ -39,33 +36,43 @@ const setSrcContent = (node, objectValue) => {
 };
 
 const setPhotos = (node, objectValue) => {
-  if(objectValue.length){
+  if(!objectValue){
 
-    for (let i = 0; i < objectValue.length; i++){
+    node.classList.add('visually-hidden');
+  } else {
 
-      const photo = document.createElement('img');
-      photo.src = objectValue[i];
-      photo.width = 45;
-      photo.height = 40;
-      photo.alt ='Фотография жилья';
-      photo.classList.add('popup__photo');
-      node.appendChild(photo);
+    if(objectValue.length){
+
+      for (let i = 0; i < objectValue.length; i++){
+
+        const photo = document.createElement('img');
+        photo.src = objectValue[i];
+        photo.width = 45;
+        photo.height = 40;
+        photo.alt ='Фотография жилья';
+        photo.classList.add('popup__photo');
+        node.appendChild(photo);
+      }
     }
   }
 };
 
 const setIcons = (node, objectValue) => {
-  const featureList = node.querySelectorAll('.popup__feature');
-  const modifiers = objectValue.map((feature) => `popup__feature--${feature}`);
+  if(!objectValue){
 
-  featureList.forEach((featureListItem) => {
+    node.classList.add('visually-hidden');
+  } else {
+    const featureList = node.querySelectorAll('.popup__feature');
+    const modifiers = objectValue.map((feature) => `popup__feature--${feature}`);
 
-    const modifier = featureListItem.classList[1];
-    if (!modifiers.includes(modifier)) {
-      featureListItem.remove();
-    }
-  });
+    featureList.forEach((featureListItem) => {
 
+      const modifier = featureListItem.classList[1];
+      if (!modifiers.includes(modifier)) {
+        featureListItem.remove();
+      }
+    });
+  }
 };
 
 const renderAd = (ad) =>{
@@ -88,4 +95,4 @@ const renderAd = (ad) =>{
 
 export {
   renderAd,
-  similarAdList};
+};

@@ -1,9 +1,9 @@
 import {
   activateForm,
+  deactivateForm
 } from './form.js';
 
 import {
-  similarAdList,
   renderAd
 } from './popup.js';
 import {
@@ -13,13 +13,14 @@ import {
 
 const STARTING_LAT = 35.67110;
 const STARTING_LNG = 139.76120;
-const INCREASE_MULTIPLIER = 10;
+const INCREASE_MULTIPLIER = 13;
 const ICON_SIZE = 52;
 const SIMILAR_AD_ICON_SIZE = 40;
 
 
 const addressField = document.querySelector('#address');
 
+deactivateForm();
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -74,18 +75,23 @@ const icon = L.icon({
   iconAnchor: [SIMILAR_AD_ICON_SIZE/2, SIMILAR_AD_ICON_SIZE],
 });
 
-similarAdList.forEach((element) => {
-  const lat = element.location.lat;
-  const lng = element.location.lng;
-  const marker = L.marker({
-    lat,
-    lng,
-  },
-  {
-    icon,
-  },);
+const renderSimilarList = (similarAdList) =>{
+  similarAdList.forEach((element) => {
+    const lat = element.location.lat;
+    const lng = element.location.lng;
+    const marker = L.marker({
+      lat,
+      lng,
+    },
+    {
+      icon,
+    },);
 
-  marker
-    .addTo(map)
-    .bindPopup(renderAd(element));
-});
+    marker
+      .addTo(map)
+      .bindPopup(renderAd(element));
+  });
+};
+
+export {renderSimilarList};
+
